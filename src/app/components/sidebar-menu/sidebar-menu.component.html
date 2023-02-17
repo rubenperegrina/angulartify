@@ -1,1 +1,46 @@
-<p>sidebar-menu works!</p>
+<div class="menu flex">
+  <div class="image-container flex flex-center">
+    <img src="assets/images/spotify-logo.png" alt="Spotify logo" srcset="" />
+  </div>
+
+  <div class="menu-container flex options">
+    <app-menu-button
+      [description]="'Home'"
+      [select]="menuSelected === 'Home'"
+      (buttonClicked)="buttonClicked('Home')"
+    >
+      <fa-icon [icon]="homeIcon"></fa-icon>
+    </app-menu-button>
+
+    <app-menu-button
+      [description]="'Search'"
+      [select]="menuSelected === 'Search'"
+      (buttonClicked)="buttonClicked('Search')"
+    >
+      <fa-icon [icon]="searchIcon"></fa-icon>
+    </app-menu-button>
+
+    <app-menu-button
+      [description]="'Artists'"
+      [select]="menuSelected === 'Artists'"
+      (buttonClicked)="buttonClicked('Artists')"
+    >
+      <fa-icon [icon]="artistsIcon"></fa-icon>
+    </app-menu-button>
+  </div>
+  <div class="menu-container flex">
+    <span class="playlist-title"> PLAYLISTS </span>
+
+    <div class="playlist-scroll">
+      <app-menu-button
+        *ngFor="let playlist of playlists"
+        [description]="playlist.name"
+        [select]="menuSelected === playlist.id"
+        (click)="goToPlaylist(playlist.id)"
+      >
+        <fa-icon [icon]="playlistIcon"></fa-icon>
+      </app-menu-button>
+    </div>
+  </div>
+</div>
+<div class="usuario-info"></div>

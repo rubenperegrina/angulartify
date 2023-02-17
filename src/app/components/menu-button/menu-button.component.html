@@ -1,1 +1,7 @@
-<p>menu-button works!</p>
+<button type="button"
+  [class.select]="select"
+  (click)="onClick()"
+>
+  <ng-content></ng-content>
+  <span>{{ description }} </span>
+</button>
