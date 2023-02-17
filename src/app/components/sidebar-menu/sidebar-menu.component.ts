@@ -5,7 +5,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGuitar, faHome, faMusic, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
 import { SpotifyService } from '@app/services/spotify.service';
-import { Playlist } from '@app/interfaces/playlist';
+import { Playlist } from '@app/interfaces/playlist.model';
 import { UserCardComponent } from '../user-card/user-card.component';
 
 @Component({
@@ -31,16 +31,16 @@ export class SidebarMenuComponent implements OnInit {
     this.getPlaylists();
   }
 
-  buttonClicked(button: string){
+  buttonClicked(button: string) {
     this.menuSelected = button;
     this.router.navigateByUrl('/player/home');
   }
 
-  goToPlaylist(playlistId: string){
+  goToPlaylist(playlistId: string) {
     this.menuSelected = playlistId;
   }
 
-  async getPlaylists(){
+  async getPlaylists() {
     this.playlists = await this.spotifyService.getPlaylistByUser();
   }
 }
