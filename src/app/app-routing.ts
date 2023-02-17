@@ -26,13 +26,13 @@ export const routes: Routes =
         .then(m => m.LoginComponent)
     },
     {
-      path: 'home',
-      loadComponent: () => import('./pages/home/home.component')
-        .then(m => m.HomeComponent),
+      path: 'player',
+      loadChildren: () => import('./pages/player/player-routing')
+        .then(m => m.playerRoutes),
       canActivate: [authGuard]
     },
-    { path: '', pathMatch: 'full', redirectTo: 'home' },
-    { path: '**', pathMatch: 'full', redirectTo: 'home' },
+    { path: '', pathMatch: 'full', redirectTo: 'player' },
+    { path: '**', pathMatch: 'full', redirectTo: 'player' },
   ];
 
 if (environment.production) {
