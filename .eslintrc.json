@@ -40,6 +40,7 @@
             "style": "kebab-case"
           }
         ],
+        "no-extra-boolean-cast":"off",
         "comma-dangle": "off",
         "@typescript-eslint/comma-dangle": "off"
       }

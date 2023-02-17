@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
   openLoginUrl() {
     window.location.href = this.spotifyService.getLoginUrl();
   }
