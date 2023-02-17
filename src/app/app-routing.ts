@@ -1,7 +1,7 @@
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, inject } from '@angular/core';
 import { Routes } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { LoginComponent } from './pages/login/login.component';
+import { SpotifyService } from './services/spotify.service';
 
 export const routes: Routes =
   [
@@ -10,6 +10,14 @@ export const routes: Routes =
       loadComponent: () => import('./pages/login/login.component')
         .then(m => m.LoginComponent)
     },
+    {
+      path: 'home',
+      loadComponent: () => import('./pages/home/home.component')
+        .then(m => m.HomeComponent),
+        canActivate: [() => inject(SpotifyService).isLoggedIn()]
+    },
+    { path: '', pathMatch: 'full', redirectTo: 'home' },
+    { path: '**', pathMatch: 'full', redirectTo: 'home' },
   ];
 
 if (environment.production) {

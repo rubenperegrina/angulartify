@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import Spotify from 'spotify-web-api-js';
 import { User } from '@app/interfaces/user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,13 @@ export class SpotifyService {
 
   spotifyApi: Spotify.SpotifyWebApiJs = null;
   user: User;
-  authEndpoint: string = `${environment.authEndpoint}?`;
-  clientId: string = `client_id=${environment.clientId}&`;
-  redirectUrl: string = `redirect_uri=${environment.redirectUrl}&`;
-  scopes: string = `scope=${environment.scopes.join('%20')}&`;
-  responseType: string = `response_type=token&show_dialog=true`;
+  authEndpoint = `${environment.authEndpoint}?`;
+  clientId = `client_id=${environment.clientId}&`;
+  redirectUrl = `redirect_uri=${environment.redirectUrl}&`;
+  scopes = `scope=${environment.scopes.join('%20')}&`;
+  responseType = `response_type=token&show_dialog=true`;
 
+  private router = inject(Router);
   constructor() {
     this.spotifyApi = new Spotify();
   }
@@ -32,7 +34,26 @@ export class SpotifyService {
     return params[0].split('=')[1];
   }
 
-  setAccessToken(token: string){
+  setAccessToken(token: string) {
     this.spotifyApi.setAccessToken(token);
+    localStorage.setItem('token', token);
+  }
+
+  getAccessToken(): string {
+    return localStorage.getItem('token');
+  }
+
+  isLoggedIn(): boolean {
+    const token = this.getAccessToken();
+    if (!token) {
+      this.logOut();
+      return false;
+    }
+    return true;
+  }
+
+  logOut() {
+    localStorage.clear();
+    this.router.navigate(['/login']);
   }
 }
