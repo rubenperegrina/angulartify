@@ -6,13 +6,14 @@ import { faGuitar, faHome, faMusic, faSearch } from '@fortawesome/free-solid-svg
 import { Router } from '@angular/router';
 import { SpotifyService } from '@app/services/spotify.service';
 import { Playlist } from '@app/interfaces/playlist';
+import { UserCardComponent } from '../user-card/user-card.component';
 
 @Component({
   selector: 'app-sidebar-menu',
   templateUrl: './sidebar-menu.component.html',
   styleUrls: ['./sidebar-menu.component.scss'],
   standalone: true,
-  imports: [CommonModule, MenuButtonComponent, FontAwesomeModule],
+  imports: [CommonModule, MenuButtonComponent, FontAwesomeModule, UserCardComponent],
 })
 export class SidebarMenuComponent implements OnInit {
 
