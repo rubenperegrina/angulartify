@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   clientId: '848de96d5a4e461eaa84cc17e3168414',
   authEndpoint: 'https://accounts.spotify.com/authorize',
-  redirectUrl: 'https://angulartify.vercel.app/login/',
+  redirectUrl: 'http://localhost:4200/login/',
   scopes: [
     "user-read-currently-playing", // música reproduciendose ahora.
     "user-read-recently-played", // leer música reproducida recientemente
