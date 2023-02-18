@@ -1,1 +1,11 @@
-<p>top-artist works!</p>
+<div class="card p-20">
+  <div class="artist flex">
+    <span class="title-bg">
+      {{ topArtist.name }}
+    </span>
+  </div>
+  <div
+    class="image"
+    [style.background-image]="'url(' + topArtist.imageUrl + ')'"
+  ></div>
+</div>

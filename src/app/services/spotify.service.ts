@@ -5,6 +5,7 @@ import { createSpotifyUserByUser, User } from '@app/interfaces/user.model';
 import { Router } from '@angular/router';
 import { createSpotifyPlaylistByPlaylist, Playlist } from '@app/interfaces/playlist.model';
 import { Music, SpotifyTrackForMusic } from '@app/interfaces/music.model';
+import { Artist, SpotifyArtistByArtist } from '@app/interfaces/artist.model';
 
 @Injectable({
   providedIn: 'root'
@@ -78,6 +79,11 @@ export class SpotifyService {
   logOut() {
     localStorage.clear();
     this.router.navigate(['/login']);
+  }
+
+  async getTopArtist(limit = 10):Promise<Artist[]> {
+    const artists = await this.spotifyApi.getMyTopArtists({ limit });
+    return artists.items.map(SpotifyArtistByArtist);
   }
 
   async searchMusics(offset = 0, limit = 50): Promise<Music[]> {

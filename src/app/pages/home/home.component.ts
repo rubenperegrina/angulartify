@@ -6,12 +6,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Music, newMusic } from '@app/interfaces/music.model';
 import { SpotifyService } from '@app/services/spotify.service';
 import { PlayerService } from '@app/services/player.service';
+import { TopArtistComponent } from '@app/components/top-artist/top-artist.component';
 
 @Component({
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule],
+  imports: [CommonModule, FontAwesomeModule, TopArtistComponent],
 })
 export class HomeComponent implements OnInit, OnDestroy {
 

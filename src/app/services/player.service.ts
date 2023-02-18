@@ -20,6 +20,7 @@ export class PlayerService {
     clearTimeout(this.timerId);
 
     const music = await this.spotifyService.getActualMusic();
+    console.log("🚀 ~ file: player.service.ts:23 ~ PlayerService ~ getActualMusic ~ music", music)
     this.setActualMusic(music);
 
     this.timerId = setInterval(async () => {
