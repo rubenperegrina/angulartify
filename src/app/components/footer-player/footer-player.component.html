@@ -1,0 +1,21 @@
+<ng-container *ngIf="music.id">
+  <div class="flex player-container">
+    <div class="flex artist-card">
+      <img [src]="music.album.imageUrl" alt="Artist image profile" srcset="" />
+      <div class="info-song">
+        <span>
+          {{ music.title }}
+        </span>
+        <span class="artists" *ngFor="let artist of music.artists">
+          {{ artist.name }}
+        </span>
+      </div>
+    </div>
+    <div class="flex control-card">
+      <fa-icon class="icon" [icon]="faStepBackward" (click)="previousMusic()">
+      </fa-icon>
+      <fa-icon class="icon" [icon]="faStepForward" (click)="nextMusic()">
+      </fa-icon>
+    </div>
+  </div>
+</ng-container>
