@@ -8,7 +8,7 @@
       [description]="'Home'"
       [icon]="homeIcon"
       [select]="menuSelected === 'Home'"
-      (buttonClicked)="buttonClicked('Home')"
+      (buttonClicked)="buttonClicked('home')"
     >
     </app-menu-button>
 
@@ -16,15 +16,15 @@
       [description]="'Search'"
       [icon]="searchIcon"
       [select]="menuSelected === 'Search'"
-      (buttonClicked)="buttonClicked('Search')"
+      (buttonClicked)="buttonClicked('search')"
     >
     </app-menu-button>
 
     <app-menu-button
       [description]="'Artists'"
       [icon]="artistsIcon"
-      [select]="menuSelected === 'Artists'"
-      (buttonClicked)="buttonClicked('Artists')"
+      [select]="menuSelected === 'Library'"
+      (buttonClicked)="buttonClicked('library')"
     >
     </app-menu-button>
   </div>

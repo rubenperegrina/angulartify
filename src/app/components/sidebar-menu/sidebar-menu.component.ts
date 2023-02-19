@@ -33,7 +33,7 @@ export class SidebarMenuComponent implements OnInit {
 
   buttonClicked(button: string) {
     this.menuSelected = button;
-    this.router.navigateByUrl('/player/home');
+    this.router.navigateByUrl('/player/' + button);
   }
 
   goToPlaylist(playlistId: string) {
