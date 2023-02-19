@@ -1,4 +1,4 @@
-@import '/src/assets/styles/variables.scss';
+@import "/src/assets/styles/variables.scss";
 
 :host {
   display: block;
@@ -11,8 +11,10 @@
     border-radius: 5px;
     text-align: left;
     font-weight: 600;
-    font-size: .8rem;
+    font-size: 0.8rem;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 
     span {
       display: inline-block;
@@ -24,7 +26,12 @@
       text-overflow: ellipsis;
     }
 
-    color:$color-primary;
+    .playlist-image {
+      height: 25px;
+      border-radius: 5px;
+    }
+
+    color: $color-primary;
     background-color: transparent;
 
     &.select {

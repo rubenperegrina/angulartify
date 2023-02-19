@@ -20,7 +20,7 @@ $h-container: calc($h-spotify-logo + $h-menu-options + $h-footer-user);
     flex-grow: 1;
     flex-direction: column;
     height: 100%;
-    padding: 0px 40px 0px 40px;
+    padding: 0px 20px 0px 20px;
 
     .image-container {
       min-height: $h-spotify-logo;

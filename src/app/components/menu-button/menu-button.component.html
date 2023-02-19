@@ -3,5 +3,7 @@
   (click)="onClick()"
 >
   <ng-content></ng-content>
-  <span>{{ description }} </span>
+  <fa-icon *ngIf="icon" [icon]="icon"></fa-icon>
+  <img *ngIf="imageUrl" class="playlist-image" [src]="imageUrl" alt="{{description}}" srcset="" />
+  <span>{{ description | slice:0:18 }} </span>
 </button>

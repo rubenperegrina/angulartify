@@ -2,7 +2,7 @@
   <app-banner [image]="bannerImageUrl" [title]="bannerText"></app-banner>
 
   <div class="title-bg mt-7">
-    {{ title }}
+    {{ title | slice:0:32 }}
   </div>
 
   <table class="table mt-3">

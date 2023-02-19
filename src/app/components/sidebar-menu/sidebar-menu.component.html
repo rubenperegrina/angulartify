@@ -6,26 +6,26 @@
   <div class="menu-container flex options">
     <app-menu-button
       [description]="'Home'"
+      [icon]="homeIcon"
       [select]="menuSelected === 'Home'"
       (buttonClicked)="buttonClicked('Home')"
     >
-      <fa-icon [icon]="homeIcon"></fa-icon>
     </app-menu-button>
 
     <app-menu-button
       [description]="'Search'"
+      [icon]="searchIcon"
       [select]="menuSelected === 'Search'"
       (buttonClicked)="buttonClicked('Search')"
     >
-      <fa-icon [icon]="searchIcon"></fa-icon>
     </app-menu-button>
 
     <app-menu-button
       [description]="'Artists'"
+      [icon]="artistsIcon"
       [select]="menuSelected === 'Artists'"
       (buttonClicked)="buttonClicked('Artists')"
     >
-      <fa-icon [icon]="artistsIcon"></fa-icon>
     </app-menu-button>
   </div>
   <div class="menu-container flex">
@@ -35,10 +35,11 @@
       <app-menu-button
         *ngFor="let playlist of playlists"
         [description]="playlist.name"
+        [imageUrl]="playlist.imageUrl"
         [select]="menuSelected === playlist.id"
         (click)="goToPlaylist(playlist.id)"
       >
-        <fa-icon [icon]="playlistIcon"></fa-icon>
+        <!-- <fa-icon [icon]="playlistIcon"></fa-icon> -->
       </app-menu-button>
     </div>
   </div>
