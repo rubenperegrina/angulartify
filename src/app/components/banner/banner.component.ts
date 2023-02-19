@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-banner',
+  templateUrl: './banner.component.html',
+  styleUrls: ['./banner.component.scss'],
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.scss']
 })
 export class BannerComponent {
 
+  @Input() image = '';
+  @Input() title = '';
 }

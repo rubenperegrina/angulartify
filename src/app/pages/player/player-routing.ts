@@ -12,6 +12,11 @@ export const playerRoutes: Routes =
           loadComponent: () => import('../home/home.component')
             .then(m => m.HomeComponent)
         },
+        {
+          path: 'list/:type/:id',
+          loadComponent: () => import('../list/list.component')
+            .then(m => m.ListComponent)
+        },
       ]
     },
   ];

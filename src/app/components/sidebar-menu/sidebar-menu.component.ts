@@ -38,6 +38,7 @@ export class SidebarMenuComponent implements OnInit {
 
   goToPlaylist(playlistId: string) {
     this.menuSelected = playlistId;
+    this.router.navigateByUrl(`player/list/playlist/${playlistId}`)
   }
 
   async getPlaylists() {
