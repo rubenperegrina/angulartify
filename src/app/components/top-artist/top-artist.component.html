@@ -1,11 +1,18 @@
-<div class="card p-20">
-  <div class="artist flex">
-    <span class="title-bg">
-      {{ topArtist.name }}
-    </span>
+<div class="top-artists">
+  <div class="card p-20" *ngFor="let artist of topArtists">
+    <div
+      class="image"
+      [style.background-image]="'url(' + artist.imageUrl + ')'"
+    ></div>
   </div>
-  <div
-    class="image"
-    [style.background-image]="'url(' + topArtist.imageUrl + ')'"
-  ></div>
+  <div (click)="getTopArtist(5)" class="card load-more p-20">
+    <div
+      class="image"
+    ></div>
+    <div class="artist flex">
+      <span class="title-bg">
+        Load more
+      </span>
+    </div>
+  </div>
 </div>

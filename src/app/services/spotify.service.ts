@@ -81,12 +81,12 @@ export class SpotifyService {
     this.router.navigate(['/login']);
   }
 
-  async getTopArtist(limit = 10): Promise<Artist[]> {
+  async getTopArtist(limit = 5): Promise<Artist[]> {
     const artists = await this.spotifyApi.getMyTopArtists({ limit });
     return artists.items.map(SpotifyArtistByArtist);
   }
 
-  async searchMusics(offset = 0, limit = 50): Promise<Music[]> {
+  async getMySavedTracks(offset = 0, limit = 50): Promise<Music[]> {
     const musics = await this.spotifyApi.getMySavedTracks({ offset, limit });
     return musics.items.map(x => SpotifyTrackForMusic(x.track));
   }

@@ -23,7 +23,6 @@ export class FooterPlayerComponent implements OnInit, OnDestroy {
   private playerService = inject(PlayerService);
 
   ngOnInit(): void {
-    console.log(this.music);
     this.getActualMusic();
   }
 

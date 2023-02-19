@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   private playerService = inject(PlayerService);
 
   ngOnInit(): void {
-    this.getMusic();
+    this.getMySavedTracks();
     this.getActualMusic();
   }
 
@@ -33,8 +33,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
-  async getMusic() {
-    this.musics = await this.spotifyService.searchMusics()
+  async getMySavedTracks() {
+    this.musics = await this.spotifyService.getMySavedTracks(0, 10)
   }
 
   getActualMusic() {
