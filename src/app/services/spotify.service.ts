@@ -4,8 +4,9 @@ import Spotify from 'spotify-web-api-js';
 import { createSpotifyUserByUser, User } from '@app/interfaces/user.model';
 import { Router } from '@angular/router';
 import { createSpotifyPlaylistByPlaylist, Playlist, SpotifySinglePlaylistByPlaylist } from '@app/interfaces/playlist.model';
-import { Music, SpotifyTrackForMusic } from '@app/interfaces/music.model';
+import { Album, Music, SpotifyTrackForMusic } from '@app/interfaces/music.model';
 import { Artist, SpotifyArtistByArtist } from '@app/interfaces/artist.model';
+import { SpotifyAlbumForAlbum } from '@app/interfaces/album.model';
 
 @Injectable({
   providedIn: 'root'
@@ -89,6 +90,11 @@ export class SpotifyService {
   async getMySavedTracks(offset = 0, limit = 50): Promise<Music[]> {
     const musics = await this.spotifyApi.getMySavedTracks({ offset, limit });
     return musics.items.map(x => SpotifyTrackForMusic(x.track));
+  }
+
+  async getMySavedAlbums(limit = 5): Promise<Album[]> {
+    const albums = await this.spotifyApi.getMySavedAlbums({ limit });
+    return albums.items.map(x => SpotifyAlbumForAlbum(x.album));
   }
 
   async getPlaylistByUser(offset = 0, limit = 50): Promise<Playlist[]> {

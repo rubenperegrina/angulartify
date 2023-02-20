@@ -1,0 +1,14 @@
+<div class="saved-albums">
+  <div class="card p-20" *ngFor="let album of savedAlbums">
+    <div
+      class="image"
+      [style.background-image]="'url(' + album.imageUrl + ')'"
+    ></div>
+  </div>
+  <div (click)="getMySavedAlbums(5)" class="card load-more p-20">
+    <div class="image"></div>
+    <div class="album flex">
+      <span class="title-bg"> Load more </span>
+    </div>
+  </div>
+</div>

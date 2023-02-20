@@ -3,7 +3,7 @@ import { Music } from "./music.model";
 export interface Artist {
     id: string,
     name: string,
-    imageUrl: string,
+    imageUrl?: string,
     music?: Music[]
 }
 

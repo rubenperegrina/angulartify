@@ -7,12 +7,13 @@ import { Music, newMusic } from '@app/interfaces/music.model';
 import { SpotifyService } from '@app/services/spotify.service';
 import { PlayerService } from '@app/services/player.service';
 import { TopArtistComponent } from '@app/components/top-artist/top-artist.component';
+import { SavedAlbumsComponent } from '../../components/saved-albums/saved-albums.component';
 
 @Component({
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule, TopArtistComponent],
+  imports: [CommonModule, FontAwesomeModule, TopArtistComponent, SavedAlbumsComponent],
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
