@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { Track, newTrack } from '@app/interfaces/track.model';
-import { SpotifyService } from '../../services/spotify.service';
-import { PlayerService } from '../../services/player.service';
 import { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BannerComponent } from '../../components/banner/banner.component';
 import { ArtistService } from '../../services/artist.service';
 import { PlaylistService } from '../../services/playlist.service';
+import { TrackService } from '../../services/track.service';
 
 @Component({
   selector: 'app-list',
@@ -29,10 +28,9 @@ export class ListComponent implements OnInit, OnDestroy {
   subs: Subscription[] = []
 
   private activatedRoute = inject(ActivatedRoute);
-  private spotifyService = inject(SpotifyService);
-  private playerService = inject(PlayerService);
   private artistService = inject(ArtistService);
   private playlistService = inject(PlaylistService);
+  private trackService = inject(TrackService);
 
   ngOnInit(): void {
     this.getTrack();
@@ -44,7 +42,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   getActualTrack() {
-    const sub = this.playerService.actualTrack.subscribe(track => {
+    const sub = this.trackService.actualTrack.subscribe(track => {
       this.actualTrack = track;
     });
 
@@ -94,7 +92,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   async executeTrack(track: Track) {
-    await this.spotifyService.executeTrack(track.id);
-    this.playerService.setActualTrack(track);
+    await this.trackService.executeTrack(track.id);
+    this.trackService.setActualTrack(track);
   }
 }

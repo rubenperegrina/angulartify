@@ -4,10 +4,9 @@ import { Subscription } from 'rxjs';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Track, newTrack } from '@app/interfaces/track.model';
-import { SpotifyService } from '@app/services/spotify.service';
-import { PlayerService } from '@app/services/player.service';
 import { TopArtistComponent } from '@app/components/top-artist/top-artist.component';
 import { SavedAlbumsComponent } from '../../components/saved-albums/saved-albums.component';
+import { TrackService } from '../../services/track.service';
 
 @Component({
   templateUrl: './home.component.html',
@@ -22,8 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   subs: Subscription[] = [];
   playIcon = faPlay;
 
-  private spotifyService = inject(SpotifyService);
-  private playerService = inject(PlayerService);
+  private trackService = inject(TrackService);
 
   ngOnInit(): void {
     this.getMySavedTracks();
@@ -35,11 +33,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   async getMySavedTracks() {
-    this.tracks = await this.spotifyService.getMySavedTracks(0, 10)
+    this.tracks = await this.trackService.getMySavedTracks(0, 10)
   }
 
   getActualTrack() {
-    const sub = this.playerService.actualTrack.subscribe(track => {
+    const sub = this.trackService.actualTrack.subscribe(track => {
       this.actualTrack = track;
     });
 
@@ -51,7 +49,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   async setActualTrack(track: Track) {
-    await this.spotifyService.executeTrack(track.id);
-    this.playerService.setActualTrack(track);
+    await this.trackService.executeTrack(track.id);
+    this.trackService.setActualTrack(track);
   }
 }

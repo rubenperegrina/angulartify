@@ -4,7 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { Track, newTrack } from '@app/interfaces/track.model';
-import { PlayerService } from '../../services/player.service';
+import { TrackService } from '../../services/track.service';
 
 @Component({
   selector: 'app-footer-player',
@@ -20,7 +20,7 @@ export class FooterPlayerComponent implements OnInit, OnDestroy {
   faStepBackward = faStepBackward;
   faStepForward = faStepForward;
 
-  private playerService = inject(PlayerService);
+  private trackService = inject(TrackService);
 
   ngOnInit(): void {
     this.getActualTrack();
@@ -31,7 +31,7 @@ export class FooterPlayerComponent implements OnInit, OnDestroy {
   }
 
   getActualTrack() {
-    const sub = this.playerService.actualTrack.subscribe(track => {
+    const sub = this.trackService.actualTrack.subscribe(track => {
       this.track = track;
     });
 
@@ -39,10 +39,10 @@ export class FooterPlayerComponent implements OnInit, OnDestroy {
   }
 
   previousTrack() {
-    this.playerService.previousTrack();
+    this.trackService.previousTrack();
   }
 
   nextTrack() {
-    this.playerService.nextTrack();
+    this.trackService.nextTrack();
   }
 }
