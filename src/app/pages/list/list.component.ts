@@ -8,6 +8,7 @@ import { PlayerService } from '../../services/player.service';
 import { ActivatedRoute } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BannerComponent } from '../../components/banner/banner.component';
+import { ArtistService } from '../../services/artist.service';
 
 @Component({
   selector: 'app-list',
@@ -29,6 +30,7 @@ export class ListComponent implements OnInit, OnDestroy {
   private activatedRoute = inject(ActivatedRoute);
   private spotifyService = inject(SpotifyService);
   private playerService = inject(PlayerService);
+  private artistService = inject(ArtistService);
 
   ngOnInit(): void {
     this.getMusic();
@@ -74,7 +76,7 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   async getArtistData(artistId: string) {
-    const artistMusic = await this.spotifyService.getMusicByArtist(artistId);
+    const artistMusic = await this.artistService.getMusicByArtist(artistId);
     this.setSecondPage(artistMusic.name, artistMusic.imageUrl);
     this.title = artistMusic.name;
   }
