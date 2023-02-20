@@ -3,9 +3,7 @@ import { environment } from 'src/environments/environment';
 import Spotify from 'spotify-web-api-js';
 import { createSpotifyUserByUser, User } from '@app/interfaces/user.model';
 import { Router } from '@angular/router';
-import { createSpotifyPlaylistByPlaylist, Playlist, SpotifySinglePlaylistByPlaylist } from '@app/interfaces/playlist.model';
 import { Album, Music, SpotifyTrackForMusic } from '@app/interfaces/music.model';
-import { Artist, SpotifyArtistByArtist } from '@app/interfaces/artist.model';
 import { SpotifyAlbumForAlbum } from '@app/interfaces/album.model';
 
 @Injectable({
@@ -90,25 +88,6 @@ export class SpotifyService {
   async getMySavedAlbums(limit = 5): Promise<Album[]> {
     const albums = await this.spotifyApi.getMySavedAlbums({ limit });
     return albums.items.map(x => SpotifyAlbumForAlbum(x.album));
-  }
-
-  async getPlaylistByUser(offset = 0, limit = 50): Promise<Playlist[]> {
-    const playlists = await this.spotifyApi.getUserPlaylists(this.user.id, { offset, limit });
-    return playlists.items.map(createSpotifyPlaylistByPlaylist);
-  }
-
-  async getMusicByPlaylist(playlistId: string, offset = 0, limit = 50) {
-    const playlistSpotify = await this.spotifyApi.getPlaylist(playlistId);
-
-    if (!playlistSpotify)
-      return null;
-
-    const playlist = SpotifySinglePlaylistByPlaylist(playlistSpotify);
-
-    const musicsSpotify = await this.spotifyApi.getPlaylistTracks(playlistId, { offset, limit });
-    playlist.musics = musicsSpotify.items.map(music => SpotifyTrackForMusic(music.track as SpotifyApi.TrackObjectFull))
-
-    return playlist;
   }
 
   async executeMusic(musicId: string) {

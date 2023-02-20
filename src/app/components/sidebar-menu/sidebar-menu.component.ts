@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { SpotifyService } from '@app/services/spotify.service';
 import { Playlist } from '@app/interfaces/playlist.model';
 import { UserCardComponent } from '../user-card/user-card.component';
+import { PlayerService } from '../../services/player.service';
+import { PlaylistService } from '../../services/playlist.service';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -26,6 +28,7 @@ export class SidebarMenuComponent implements OnInit {
 
   private router = inject(Router);
   private spotifyService = inject(SpotifyService);
+  private playlistService = inject(PlaylistService);
 
   ngOnInit(): void {
     this.getPlaylists();
@@ -42,6 +45,6 @@ export class SidebarMenuComponent implements OnInit {
   }
 
   async getPlaylists() {
-    this.playlists = await this.spotifyService.getPlaylistByUser();
+    this.playlists = await this.playlistService.getPlaylistByUser();
   }
 }
