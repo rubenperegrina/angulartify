@@ -1,10 +1,10 @@
-import { Music } from "./music.model";
+import { Track } from "./track.model";
 
 export interface Artist {
     id: string,
     name: string,
     imageUrl?: string,
-    music?: Music[]
+    track?: Track[]
 }
 
 export function newArtist(): Artist {
@@ -12,7 +12,7 @@ export function newArtist(): Artist {
         id: '',
         imageUrl: '',
         name: '',
-        music: []
+        track: []
     };
 }
 

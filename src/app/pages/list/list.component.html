@@ -17,17 +17,17 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let music of musics"
-        (click)="executeMusic(music)"
-        [class.actual]="music.id === actualMusic.id"
+        *ngFor="let track of tracks"
+        (click)="executeTrack(track)"
+        [class.actual]="track.id === actualTrack.id"
       >
         <td>
           <fa-icon class="play" [icon]="playIcon"></fa-icon>
         </td>
-        <td class="title"><img class="image" src="{{music.album.imageUrl}}" alt="{{music.title}}">{{ music.title }}</td>
-        <td>{{ getArtists(music) }}</td>
-        <td>{{ music.duration }}</td>
-        <td>{{ music.album.name }}</td>
+        <td class="title"><img class="image" src="{{track.album.imageUrl}}" alt="{{track.title}}">{{ track.title }}</td>
+        <td>{{ getArtists(track) }}</td>
+        <td>{{ track.duration }}</td>
+        <td>{{ track.album.name }}</td>
       </tr>
     </tbody>
   </table>

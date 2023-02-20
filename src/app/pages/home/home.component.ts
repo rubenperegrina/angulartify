@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { Music, newMusic } from '@app/interfaces/music.model';
+import { Track, newTrack } from '@app/interfaces/track.model';
 import { SpotifyService } from '@app/services/spotify.service';
 import { PlayerService } from '@app/services/player.service';
 import { TopArtistComponent } from '@app/components/top-artist/top-artist.component';
@@ -17,8 +17,8 @@ import { SavedAlbumsComponent } from '../../components/saved-albums/saved-albums
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  musics: Music[] = []
-  actualMusic: Music = newMusic();
+  tracks: Track[] = []
+  actualTrack: Track = newTrack();
   subs: Subscription[] = [];
   playIcon = faPlay;
 
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getMySavedTracks();
-    this.getActualMusic();
+    this.getActualTrack();
   }
 
   ngOnDestroy(): void {
@@ -35,23 +35,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   async getMySavedTracks() {
-    this.musics = await this.spotifyService.getMySavedTracks(0, 10)
+    this.tracks = await this.spotifyService.getMySavedTracks(0, 10)
   }
 
-  getActualMusic() {
-    const sub = this.playerService.actualMusic.subscribe(music => {
-      this.actualMusic = music;
+  getActualTrack() {
+    const sub = this.playerService.actualTrack.subscribe(track => {
+      this.actualTrack = track;
     });
 
     this.subs.push(sub);
   }
 
-  getArtists(music: Music) {
-    return music.artists.map(artist => artist.name).join(', ');
+  getArtists(track: Track) {
+    return track.artists.map(artist => artist.name).join(', ');
   }
 
-  async setActualMusic(music: Music) {
-    await this.spotifyService.executeMusic(music.id);
-    this.playerService.setActualMusic(music);
+  async setActualTrack(track: Track) {
+    await this.spotifyService.executeTrack(track.id);
+    this.playerService.setActualTrack(track);
   }
 }

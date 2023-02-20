@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Music, newMusic } from '@app/interfaces/music.model';
+import { Track, newTrack } from '@app/interfaces/track.model';
 import { BehaviorSubject } from 'rxjs';
 import { SpotifyService } from './spotify.service';
 
@@ -8,34 +8,34 @@ import { SpotifyService } from './spotify.service';
 })
 export class PlayerService {
 
-  actualMusic = new BehaviorSubject<Music>(newMusic());
+  actualTrack = new BehaviorSubject<Track>(newTrack());
   timerId: any = null;
 
   private spotifyService = inject(SpotifyService);
   constructor() {
-    this.getActualMusic();
+    this.getActualTrack();
   }
 
-  async getActualMusic() {
+  async getActualTrack() {
     clearTimeout(this.timerId);
 
-    const music = await this.spotifyService.getActualMusic();
-    this.setActualMusic(music);
+    const track = await this.spotifyService.getActualTrack();
+    this.setActualTrack(track);
 
     this.timerId = setInterval(async () => {
-      await this.getActualMusic();
+      await this.getActualTrack();
     }, 5000)
   }
 
-  setActualMusic(music: Music) {
-    this.actualMusic.next(music);
+  setActualTrack(track: Track) {
+    this.actualTrack.next(track);
   }
 
-  async previousMusic() {
-    await this.spotifyService.previousMusic();
+  async previousTrack() {
+    await this.spotifyService.previousTrack();
   }
 
-  async nextMusic() {
-    await this.spotifyService.nextMusic();
+  async nextTrack() {
+    await this.spotifyService.nextTrack();
   }
 }

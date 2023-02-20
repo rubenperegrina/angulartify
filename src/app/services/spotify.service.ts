@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import Spotify from 'spotify-web-api-js';
 import { createSpotifyUserByUser, User } from '@app/interfaces/user.model';
 import { Router } from '@angular/router';
-import { Album, Music, SpotifyTrackForMusic } from '@app/interfaces/music.model';
+import { Album, Track, SpotifyTrackForTrack } from '@app/interfaces/track.model';
 import { SpotifyAlbumForAlbum } from '@app/interfaces/album.model';
 
 @Injectable({
@@ -80,9 +80,9 @@ export class SpotifyService {
     this.router.navigate(['/login']);
   }
 
-  async getMySavedTracks(offset = 0, limit = 50): Promise<Music[]> {
-    const musics = await this.spotifyApi.getMySavedTracks({ offset, limit });
-    return musics.items.map(x => SpotifyTrackForMusic(x.track));
+  async getMySavedTracks(offset = 0, limit = 50): Promise<Track[]> {
+    const tracks = await this.spotifyApi.getMySavedTracks({ offset, limit });
+    return tracks.items.map(x => SpotifyTrackForTrack(x.track));
   }
 
   async getMySavedAlbums(limit = 5): Promise<Album[]> {
@@ -90,21 +90,21 @@ export class SpotifyService {
     return albums.items.map(x => SpotifyAlbumForAlbum(x.album));
   }
 
-  async executeMusic(musicId: string) {
-    await this.spotifyApi.queue(musicId);
+  async executeTrack(trackId: string) {
+    await this.spotifyApi.queue(trackId);
     await this.spotifyApi.skipToNext();
   }
 
-  async getActualMusic(): Promise<Music> {
-    const musicSpotify = await this.spotifyApi.getMyCurrentPlayingTrack();
-    return SpotifyTrackForMusic(musicSpotify.item);
+  async getActualTrack(): Promise<Track> {
+    const trackSpotify = await this.spotifyApi.getMyCurrentPlayingTrack();
+    return SpotifyTrackForTrack(trackSpotify.item);
   }
 
-  async previousMusic() {
+  async previousTrack() {
     await this.spotifyApi.skipToPrevious();
   }
 
-  async nextMusic() {
+  async nextTrack() {
     await this.spotifyApi.skipToNext();
   }
 }

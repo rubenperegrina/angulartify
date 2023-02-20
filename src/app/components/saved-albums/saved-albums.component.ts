@@ -1,6 +1,6 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Album } from '@app/interfaces/music.model';
+import { Album } from '@app/interfaces/track.model';
 import { SpotifyService } from '@app/services/spotify.service';
 
 @Component({

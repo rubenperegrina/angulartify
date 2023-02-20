@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { SpotifyTrackForMusic } from '@app/interfaces/music.model';
+import { SpotifyTrackForTrack } from '@app/interfaces/track.model';
 import Spotify from 'spotify-web-api-js';
 import { createSpotifyPlaylistByPlaylist, Playlist, SpotifySinglePlaylistByPlaylist } from '@app/interfaces/playlist.model';
 import { SpotifyService } from './spotify.service';
@@ -22,7 +22,7 @@ export class PlaylistService {
     return playlists.items.map(createSpotifyPlaylistByPlaylist);
   }
 
-  async getMusicByPlaylist(playlistId: string, offset = 0, limit = 50) {
+  async getTrackByPlaylist(playlistId: string, offset = 0, limit = 50) {
     const playlistSpotify = await this.spotifyApi.getPlaylist(playlistId);
 
     if (!playlistSpotify)
@@ -30,8 +30,8 @@ export class PlaylistService {
 
     const playlist = SpotifySinglePlaylistByPlaylist(playlistSpotify);
 
-    const musicsSpotify = await this.spotifyApi.getPlaylistTracks(playlistId, { offset, limit });
-    playlist.musics = musicsSpotify.items.map(music => SpotifyTrackForMusic(music.track as SpotifyApi.TrackObjectFull))
+    const tracksSpotify = await this.spotifyApi.getPlaylistTracks(playlistId, { offset, limit });
+    playlist.track = tracksSpotify.items.map(track => SpotifyTrackForTrack(track.track as SpotifyApi.TrackObjectFull))
 
     return playlist;
   }

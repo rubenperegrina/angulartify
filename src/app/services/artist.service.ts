@@ -17,7 +17,7 @@ export class ArtistService {
     return artists.items.map(SpotifyArtistByArtist);
   }
 
-  async getMusicByArtist(artistId: string) {
+  async getTrackByArtist(artistId: string) {
     const artistSpotify = await this.spotifyApi.getArtist(artistId);
     if (!artistSpotify)
       return null;

@@ -2,7 +2,7 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
-import { Music, newMusic } from '@app/interfaces/music.model';
+import { Track, newTrack } from '@app/interfaces/track.model';
 import { SpotifyService } from '../../services/spotify.service';
 import { PlayerService } from '../../services/player.service';
 import { ActivatedRoute } from '@angular/router';
@@ -22,8 +22,8 @@ export class ListComponent implements OnInit, OnDestroy {
 
   bannerImageUrl = '';
   bannerText = '';
-  musics: Music[] = [];
-  actualMusic: Music = newMusic();
+  tracks: Track[] = [];
+  actualTrack: Track = newTrack();
   playIcon = faPlay;
   title = '';
   subs: Subscription[] = []
@@ -35,23 +35,23 @@ export class ListComponent implements OnInit, OnDestroy {
   private playlistService = inject(PlaylistService);
 
   ngOnInit(): void {
-    this.getMusic();
-    this.getActualMusic();
+    this.getTrack();
+    this.getActualTrack();
   }
 
   ngOnDestroy(): void {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
-  getActualMusic() {
-    const sub = this.playerService.actualMusic.subscribe(music => {
-      this.actualMusic = music;
+  getActualTrack() {
+    const sub = this.playerService.actualTrack.subscribe(track => {
+      this.actualTrack = track;
     });
 
     this.subs.push(sub);
   }
 
-  getMusic() {
+  getTrack() {
     const sub = this.activatedRoute.paramMap
       .subscribe(async params => {
         const type = params.get('type');
@@ -72,29 +72,29 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   async getPlaylistData(playlistId: string) {
-    const playlistMusic = await this.playlistService.getMusicByPlaylist(playlistId);
-    this.setSecondPage(playlistMusic.name, playlistMusic.imageUrl, playlistMusic.musics);
-    this.title = playlistMusic.name;
+    const playlistTrack = await this.playlistService.getTrackByPlaylist(playlistId);
+    this.setSecondPage(playlistTrack.name, playlistTrack.imageUrl, playlistTrack.track);
+    this.title = playlistTrack.name;
   }
 
   async getArtistData(artistId: string) {
-    const artistMusic = await this.artistService.getMusicByArtist(artistId);
-    this.setSecondPage(artistMusic.name, artistMusic.imageUrl);
-    this.title = artistMusic.name;
+    const artistTrack = await this.artistService.getTrackByArtist(artistId);
+    this.setSecondPage(artistTrack.name, artistTrack.imageUrl);
+    this.title = artistTrack.name;
   }
 
-  setSecondPage(bannerText: string, bannerImage: string, musics?: Music[]) {
+  setSecondPage(bannerText: string, bannerImage: string, tracks?: Track[]) {
     this.bannerImageUrl = bannerImage;
     this.bannerText = bannerText;
-    this.musics = musics;
+    this.tracks = tracks;
   }
 
-  getArtists(music: Music) {
-    return music.artists.map(artist => artist.name).join(', ');
+  getArtists(track: Track) {
+    return track.artists.map(artist => artist.name).join(', ');
   }
 
-  async executeMusic(music: Music) {
-    await this.spotifyService.executeMusic(music.id);
-    this.playerService.setActualMusic(music);
+  async executeTrack(track: Track) {
+    await this.spotifyService.executeTrack(track.id);
+    this.playerService.setActualTrack(track);
   }
 }

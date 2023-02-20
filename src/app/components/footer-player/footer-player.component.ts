@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
-import { Music, newMusic } from '@app/interfaces/music.model';
+import { Track, newTrack } from '@app/interfaces/track.model';
 import { PlayerService } from '../../services/player.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { PlayerService } from '../../services/player.service';
 })
 export class FooterPlayerComponent implements OnInit, OnDestroy {
 
-  music: Music = newMusic();
+  track: Track = newTrack();
   subs: Subscription[] = []
   faStepBackward = faStepBackward;
   faStepForward = faStepForward;
@@ -23,26 +23,26 @@ export class FooterPlayerComponent implements OnInit, OnDestroy {
   private playerService = inject(PlayerService);
 
   ngOnInit(): void {
-    this.getActualMusic();
+    this.getActualTrack();
   }
 
   ngOnDestroy(): void {
     this.subs.forEach(sub => sub.unsubscribe());
   }
 
-  getActualMusic() {
-    const sub = this.playerService.actualMusic.subscribe(music => {
-      this.music = music;
+  getActualTrack() {
+    const sub = this.playerService.actualTrack.subscribe(track => {
+      this.track = track;
     });
 
     this.subs.push(sub);
   }
 
-  previousMusic() {
-    this.playerService.previousMusic();
+  previousTrack() {
+    this.playerService.previousTrack();
   }
 
-  nextMusic() {
-    this.playerService.nextMusic();
+  nextTrack() {
+    this.playerService.nextTrack();
   }
 }

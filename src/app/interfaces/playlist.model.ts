@@ -1,10 +1,10 @@
-import { Music } from "./music.model";
+import { Track } from "./track.model";
 
 export interface Playlist {
   id: string,
   name: string,
   imageUrl: string,
-  musics?: Music[]
+  track?: Track[]
 }
 
 export function createSpotifyPlaylistByPlaylist(playlist: SpotifyApi.PlaylistObjectSimplified): Playlist {
@@ -23,7 +23,7 @@ export function SpotifySinglePlaylistByPlaylist(playlist: SpotifyApi.SinglePlayl
     id: playlist.id,
     name: playlist.name,
     imageUrl: playlist.images.shift().url,
-    musics: []
+    track: []
   }
 }
 
@@ -32,6 +32,6 @@ export function newPlaylist(): Playlist {
     id: '',
     imageUrl: '',
     name: '',
-    musics: []
+    track: []
   }
 }

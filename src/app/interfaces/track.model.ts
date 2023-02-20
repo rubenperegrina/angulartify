@@ -1,6 +1,6 @@
 import { addMilliseconds, format } from "date-fns";
 
-export interface Music {
+export interface Track {
     id: string,
     title: string,
     artists: Artists[],
@@ -19,7 +19,7 @@ export interface Artists {
     name: string
 }
 
-export function newMusic(): Music {
+export function newTrack(): Track {
     return {
         id: '',
         album: {
@@ -33,10 +33,10 @@ export function newMusic(): Music {
     }
 }
 
-export function SpotifyTrackForMusic(spotifyTrack: SpotifyApi.TrackObjectFull) : Music{
+export function SpotifyTrackForTrack(spotifyTrack: SpotifyApi.TrackObjectFull) : Track{
   
     if (!spotifyTrack)
-      return newMusic();
+      return newTrack();
   
     const msToMinutes = (ms: number) => {
       const data = addMilliseconds(new Date(0), ms);

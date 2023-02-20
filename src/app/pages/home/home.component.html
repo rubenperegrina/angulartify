@@ -1,4 +1,4 @@
-<div class="user-music">
+<div class="user-track">
 
   <span class="title-bg mt-4"> Your top artists</span>
   <app-top-artist class="mt-2 d-block"></app-top-artist>
@@ -20,17 +20,17 @@
     </thead>
     <tbody>
       <tr
-        *ngFor="let music of musics"
-        (click)="setActualMusic(music)"
-        [class.actual]="music.id === actualMusic.id"
+        *ngFor="let track of tracks"
+        (click)="setActualTrack(track)"
+        [class.actual]="track.id === actualTrack.id"
       >
         <td>
           <fa-icon class="play" [icon]="playIcon"></fa-icon>
         </td>
-        <td class="title"><img class="image" src="{{music.album.imageUrl}}" alt="{{music.title}}">{{ music.title }}</td>
-        <td>{{ getArtists(music) }}</td>
-        <td>{{ music.duration }}</td>
-        <td>{{ music.album.name }}</td>
+        <td class="title"><img class="image" src="{{track.album.imageUrl}}" alt="{{track.title}}">{{ track.title }}</td>
+        <td>{{ getArtists(track) }}</td>
+        <td>{{ track.duration }}</td>
+        <td>{{ track.album.name }}</td>
       </tr>
     </tbody>
   </table>
