@@ -24,9 +24,9 @@
         <td>
           <fa-icon class="play" [icon]="playIcon"></fa-icon>
         </td>
-        <td>{{ music.title }}</td>
+        <td class="title"><img class="image" src="{{music.album.imageUrl}}" alt="{{music.title}}">{{ music.title }}</td>
         <td>{{ getArtists(music) }}</td>
-        <td class="duration">{{ music.duration }}</td>
+        <td>{{ music.duration }}</td>
         <td>{{ music.album.name }}</td>
       </tr>
     </tbody>

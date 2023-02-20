@@ -99,8 +99,13 @@
       }
     }
   }
-
-  .duration {
-    text-align: right;
+  .title {
+    display: flex;
+    align-items: center;
+    .image {
+      height: 50px;
+      width: 60px;
+      padding-right: 10px;
+    }
   }
 }
