@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SpotifyService } from '@app/services/spotify.service';
 import { Router } from '@angular/router';
 import { AuthorizationService } from '../../services/authorization.service';
 
@@ -21,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   verifyTokenUrlCallback() {
     const token = this.authorizationService.getTokenUrlCallback();
-    if(!!token){
+    if (!!token) {
       this.authorizationService.setAccessToken(token);
       this.router.navigate(['/player/home']);
     }

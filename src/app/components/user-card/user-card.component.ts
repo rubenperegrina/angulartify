@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { SpotifyService } from '@app/services/spotify.service';
+import { UserService } from '@app/services/user.service';
 import { User } from '@app/interfaces/user.model';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { AuthorizationService } from '../../services/authorization.service';
@@ -18,11 +18,11 @@ export class UserCardComponent implements OnInit {
   sairIcone = faSignOutAlt;
   user: User = null;
 
-  private spotifyService = inject(SpotifyService);
+  private userService = inject(UserService);
   private authorizationService = inject(AuthorizationService);
 
   ngOnInit(): void {
-    this.user = this.spotifyService.user;
+    this.user = this.userService.user;
   }
 
   logOut() {

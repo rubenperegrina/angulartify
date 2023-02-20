@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import Spotify from 'spotify-web-api-js';
 import { createSpotifyUserByUser, User } from '@app/interfaces/user.model';
-import { Router } from '@angular/router';
 import { Album } from '@app/interfaces/track.model';
 import { SpotifyAlbumForAlbum } from '@app/interfaces/album.model';
 import { AuthorizationService } from './authorization.service';
@@ -9,7 +8,7 @@ import { AuthorizationService } from './authorization.service';
 @Injectable({
   providedIn: 'root'
 })
-export class SpotifyService {
+export class UserService {
 
   spotifyApi: Spotify.SpotifyWebApiJs = null;
   user: User;

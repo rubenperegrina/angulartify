@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { SpotifyTrackForTrack } from '@app/interfaces/track.model';
 import Spotify from 'spotify-web-api-js';
 import { createSpotifyPlaylistByPlaylist, Playlist, SpotifySinglePlaylistByPlaylist } from '@app/interfaces/playlist.model';
-import { SpotifyService } from './spotify.service';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +11,13 @@ export class PlaylistService {
 
   spotifyApi: Spotify.SpotifyWebApiJs = null;
 
-  private spotifyService = inject(SpotifyService);
+  private userService = inject(UserService);
   constructor() {
     this.spotifyApi = new Spotify();
   }
 
   async getPlaylistByUser(offset = 0, limit = 50): Promise<Playlist[]> {
-    const userId = this.spotifyService.user.id;
+    const userId = this.userService.user.id;
     const playlists = await this.spotifyApi.getUserPlaylists(userId, { offset, limit });
     return playlists.items.map(createSpotifyPlaylistByPlaylist);
   }

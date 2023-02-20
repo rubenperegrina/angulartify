@@ -4,7 +4,6 @@ import { MenuButtonComponent } from '../menu-button/menu-button.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faGuitar, faHome, faMusic, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Router } from '@angular/router';
-import { SpotifyService } from '@app/services/spotify.service';
 import { Playlist } from '@app/interfaces/playlist.model';
 import { UserCardComponent } from '../user-card/user-card.component';
 import { PlaylistService } from '../../services/playlist.service';
