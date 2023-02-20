@@ -1,8 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import Spotify from 'spotify-web-api-js';
 import { createSpotifyUserByUser, User } from '@app/interfaces/user.model';
-import { Album } from '@app/interfaces/track.model';
-import { SpotifyAlbumForAlbum } from '@app/interfaces/album.model';
 import { AuthorizationService } from './authorization.service';
 
 @Injectable({
@@ -37,10 +35,5 @@ export class UserService {
   async getSpotifyUser() {
     const userInfo = await this.spotifyApi.getMe();
     this.user = createSpotifyUserByUser(userInfo);
-  }
-
-  async getMySavedAlbums(limit = 5): Promise<Album[]> {
-    const albums = await this.spotifyApi.getMySavedAlbums({ limit });
-    return albums.items.map(x => SpotifyAlbumForAlbum(x.album));
   }
 }

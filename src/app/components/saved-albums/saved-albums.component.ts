@@ -1,7 +1,7 @@
 import { Component, inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Album } from '@app/interfaces/track.model';
-import { UserService } from '../../services/user.service';
+import { AlbumService } from '../../services/album.service';
 
 @Component({
   selector: 'app-saved-albums',
@@ -14,7 +14,7 @@ export class SavedAlbumsComponent implements OnInit {
   savedAlbums: Album[] = [];
   @Input() limit!: number;
 
-  private userService = inject(UserService);
+  private albumService = inject(AlbumService);
 
   ngOnInit(): void {
     this.getMySavedAlbums();
@@ -23,6 +23,6 @@ export class SavedAlbumsComponent implements OnInit {
   async getMySavedAlbums(limit?: number) {
     if (limit)
       this.limit = this.limit + limit;
-    this.savedAlbums = await this.userService.getMySavedAlbums(this.limit)
+    this.savedAlbums = await this.albumService.getMySavedAlbums(this.limit)
   }
 }
