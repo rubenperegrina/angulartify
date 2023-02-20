@@ -59,10 +59,11 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   async getSecondPage(type: string, id: string) {
-    if (type === 'playlist')
+    if (type === 'playlist') {
       await this.getPlaylistData(id);
-    else {
-      //TODO getArtistData
+    }
+    if (type === 'artist') {
+      await this.getArtistData(id);
     }
   }
 
@@ -72,7 +73,13 @@ export class ListComponent implements OnInit, OnDestroy {
     this.title = playlistMusic.name;
   }
 
-  setSecondPage(bannerText: string, bannerImage: string, musics: Music[]) {
+  async getArtistData(artistId: string) {
+    const artistMusic = await this.spotifyService.getMusicByArtist(artistId);
+    this.setSecondPage(artistMusic.name, artistMusic.imageUrl);
+    this.title = artistMusic.name;
+  }
+
+  setSecondPage(bannerText: string, bannerImage: string, musics?: Music[]) {
     this.bannerImageUrl = bannerImage;
     this.bannerText = bannerText;
     this.musics = musics;

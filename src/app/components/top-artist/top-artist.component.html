@@ -1,5 +1,5 @@
 <div class="top-artists">
-  <div class="card p-20" *ngFor="let artist of topArtists">
+  <div class="card p-20" [routerLink]="['/player/list/artist/', artist.id]" *ngFor="let artist of topArtists">
     <div
       class="image"
       [style.background-image]="'url(' + artist.imageUrl + ')'"

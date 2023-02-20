@@ -10,6 +10,6 @@ import { SavedAlbumsComponent } from '../../components/saved-albums/saved-albums
   imports: [CommonModule, TopArtistComponent, SavedAlbumsComponent],
 })
 export class LibraryComponent {
-  savedAlbumsLimit = 15;
-  topArtistsLimit = 15;
+  savedAlbumsLimit = 14;
+  topArtistsLimit = 14;
 }

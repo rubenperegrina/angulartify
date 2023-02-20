@@ -116,6 +116,15 @@ export class SpotifyService {
     return playlist;
   }
 
+  async getMusicByArtist(artistId: string) {
+    const artistSpotify = await this.spotifyApi.getArtist(artistId);
+    if (!artistSpotify)
+      return null;
+
+    const artist = SpotifyArtistByArtist(artistSpotify);
+    return artist;
+  }
+
   async executeMusic(musicId: string) {
     await this.spotifyApi.queue(musicId);
     await this.spotifyApi.skipToNext();

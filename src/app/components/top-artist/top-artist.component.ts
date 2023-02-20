@@ -2,13 +2,14 @@ import { Component, inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Artist } from '@app/interfaces/artist.model';
 import { SpotifyService } from '../../services/spotify.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-top-artist',
   templateUrl: './top-artist.component.html',
   styleUrls: ['./top-artist.component.scss'],
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
 })
 export class TopArtistComponent implements OnInit {
   topArtists: Artist[] = [];
