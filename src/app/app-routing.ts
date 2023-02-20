@@ -1,20 +1,22 @@
 import { enableProdMode, inject } from '@angular/core';
 import { Routes } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { AuthorizationService } from './services/authorization.service';
 import { SpotifyService } from './services/spotify.service';
 
 export const authGuard = () => {
   const spotifyService = inject(SpotifyService);
-  const token = spotifyService.getAccessToken();
+  const authorizationService = inject(AuthorizationService);
+  const token = authorizationService.getAccessToken();
   if (!token)
-    spotifyService.logOut();
+  authorizationService.logOut();
 
   return new Promise(async (res) => {
     const userCreated = await spotifyService.initUser();
     if (userCreated)
       res(true);
     else
-      res(spotifyService.logOut());
+      res(authorizationService.logOut());
   })
 }
 

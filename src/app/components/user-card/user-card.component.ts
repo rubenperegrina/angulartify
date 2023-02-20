@@ -4,6 +4,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SpotifyService } from '@app/services/spotify.service';
 import { User } from '@app/interfaces/user.model';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
   selector: 'app-user-card',
@@ -18,12 +19,13 @@ export class UserCardComponent implements OnInit {
   user: User = null;
 
   private spotifyService = inject(SpotifyService);
+  private authorizationService = inject(AuthorizationService);
 
   ngOnInit(): void {
     this.user = this.spotifyService.user;
   }
 
   logOut() {
-    this.spotifyService.logOut();
+    this.authorizationService.logOut();
   }
 }

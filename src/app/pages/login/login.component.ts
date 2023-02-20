@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpotifyService } from '@app/services/spotify.service';
 import { Router } from '@angular/router';
+import { AuthorizationService } from '../../services/authorization.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  private spotifyService = inject(SpotifyService);
+  private authorizationService = inject(AuthorizationService);
   private router = inject(Router);
 
   ngOnInit(): void {
@@ -19,14 +20,14 @@ export class LoginComponent implements OnInit {
   }
 
   verifyTokenUrlCallback() {
-    const token = this.spotifyService.getTokenUrlCallback();
+    const token = this.authorizationService.getTokenUrlCallback();
     if(!!token){
-      this.spotifyService.setAccessToken(token);
+      this.authorizationService.setAccessToken(token);
       this.router.navigate(['/player/home']);
     }
   }
 
   openLoginUrl() {
-    window.location.href = this.spotifyService.getLoginUrl();
+    window.location.href = this.authorizationService.getLoginUrl();
   }
 }
