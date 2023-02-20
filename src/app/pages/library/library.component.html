@@ -1,1 +1,14 @@
-<p>library works!</p>
+<div class="user-library">
+  <h1 class="title-bg mt-4">Your library</h1>
+  <span class="title-bg mt-4"> Top artists</span>
+  <app-top-artist
+    [limit]="topArtistsLimit"
+    class="mt-2 d-block"
+  ></app-top-artist>
+
+  <span class="title-bg mt-4"> Saved albums</span>
+  <app-saved-albums
+    [limit]="savedAlbumsLimit"
+    class="mt-2 d-block"
+  ></app-saved-albums>
+</div>

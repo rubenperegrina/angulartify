@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Artist } from '@app/interfaces/artist.model';
 import { SpotifyService } from '../../services/spotify.service';
@@ -12,17 +12,17 @@ import { SpotifyService } from '../../services/spotify.service';
 })
 export class TopArtistComponent implements OnInit {
   topArtists: Artist[] = [];
-  limit = 5;
-  
+  @Input() limit!: number;
+
   private spotifyService = inject(SpotifyService);
 
   ngOnInit(): void {
     this.getTopArtist();
   }
 
-  async getTopArtist(limit?: number){
-    if(limit)
-    this.limit = this.limit+limit;
+  async getTopArtist(limit?: number) {
+    if (limit)
+      this.limit = this.limit + limit;
     this.topArtists = await this.spotifyService.getTopArtist(this.limit);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Album } from '@app/interfaces/music.model';
 import { SpotifyService } from '@app/services/spotify.service';
@@ -12,7 +12,7 @@ import { SpotifyService } from '@app/services/spotify.service';
 })
 export class SavedAlbumsComponent implements OnInit {
   savedAlbums: Album[] = [];
-  limit = 5;
+  @Input() limit!: number;
 
   private spotifyService = inject(SpotifyService);
 
