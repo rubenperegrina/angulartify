@@ -3,5 +3,9 @@
   <span>
     {{ user.name }}
   </span>
-  <fa-icon class="icon" (click)="logOut()" [icon]="sairIcone"> </fa-icon>
+  <div class="darkTheme" (click)="toggleDarkTheme()">
+    <fa-icon *ngIf="darkMode" class="icon" [icon]="faSun"> </fa-icon>
+    <fa-icon *ngIf="!darkMode" class="icon" [icon]="faMoon"> </fa-icon>
+  </div>
+  <fa-icon class="icon" (click)="logOut()" [icon]="faSignOutAlt"> </fa-icon>
 </div>

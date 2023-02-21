@@ -12,7 +12,7 @@ import { AlbumService } from '../../services/album.service';
 })
 export class SavedAlbumsComponent implements OnInit {
   savedAlbums: Album[] = [];
-  @Input() limit!: number;
+  @Input() limit = 5;
 
   private albumService = inject(AlbumService);
 

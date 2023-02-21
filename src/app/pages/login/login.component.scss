@@ -1,7 +1,7 @@
-@import 'variables';
+@import '../../../assets/styles/variables.scss';
 
 :host {
-  background-color: $color-black;
+  background-color: var(--color-black);
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -22,8 +22,8 @@
       min-width: 200px;
       padding: 20px;
       border-radius: 500px;
-      background-color: $color-primary;
-      color: $color-white;
+      background-color: var(--color-primary);
+      color: var(--color-white);
       border: 0;
       cursor: pointer;
     }

@@ -2,7 +2,7 @@
 
 :host {
   .player-container {
-    background-color: $color-transparent-70;
+    background-color: var(--color-transparent-70);
     position: fixed;
     display: flex;
     bottom: 0px;
@@ -17,8 +17,8 @@
       align-items: center;
       height: 100%;
       width: 100%;
-      color: $color-white;
-      border-top: 1px solid $color-transparent-20;
+      color: var(--color-white);
+      border-top: 1px solid var(--color-transparent-20);
       .info-song {
         min-width: 320px;
         span {
@@ -50,8 +50,8 @@
       align-items: center;
       height: auto;
       width: 100%;
-      color: $color-white;
-      border-top: 1px solid $color-transparent-20;
+      color: var(--color-white);
+      border-top: 1px solid var(--color-transparent-20);
       .icon {
         padding: 10px;
         font-size: 2rem;

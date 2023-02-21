@@ -8,7 +8,7 @@
     width: 7px;
 
     &-thumb {
-      background-color: rgba($color-primary, 0.2);
+      background-color: rgba(var(--color-primary), 0.2);
       border-radius: 10px;
     }
 
@@ -37,24 +37,24 @@
   border-collapse: collapse;
 
   .play {
-    color: $color-primary;
+    color: var(--text-color);
     font-size: 0.5rem;
   }
 
   .actual {
-    background-color: $color-white;
+    background-color: var(--color-white);
     padding: 10px;
-    box-shadow: 0px 0px 15px $color-transparent-30;
+    box-shadow: 0px 0px 15px var(--color-transparent-30);
 
     td {
-      color: $color-primary;
+      color: var(--text-color);
     }
   }
 
   thead th {
     font-size: 0.75rem;
     font-weight: 600;
-    color: $color-transparent-30;
+    color: var(--color-transparent-30);
   }
 
   th,
@@ -74,7 +74,7 @@
       cursor: pointer;
 
       td {
-        color: $color-primary;
+        color: var(--text-color);
       }
     }
 
@@ -83,7 +83,7 @@
       margin-top: 10px;
       font-weight: 500;
       font-size: 0.85rem;
-      color: $color-transparent-70;
+      color: var(--color-transparent-70);
 
       &:nth-child(1) {
         padding-left: 10px;

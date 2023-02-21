@@ -13,7 +13,7 @@ import { ArtistService } from '@app/services/artist.service';
 })
 export class TopArtistComponent implements OnInit {
   topArtists: Artist[] = [];
-  @Input() limit!: number;
+  @Input() limit = 5;
 
   private artistService = inject(ArtistService);
 

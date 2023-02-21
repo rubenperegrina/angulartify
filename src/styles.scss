@@ -5,7 +5,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background-color: $color-background;
+  background-color: var(--color-background);
 }
 
 * {
@@ -23,11 +23,11 @@ body {
 }
 
 .title {
-  color: $color-primary;
+  color: var(--text-color-secondary);
   display: block;
   font-weight: 700;
 
-  &-bg{
+  &-bg {
     @extend .title;
     font-size: 2.2rem;
   }
@@ -38,10 +38,10 @@ body {
   }
 }
 
-.mt{
+.mt {
   @for $i from 1 to 10 {
     &-#{ $i } {
-      margin-top: #{ $i }vh;
+      margin-top: #{$i}vh;
     }
   }
 }
@@ -51,7 +51,7 @@ body {
 }
 
 .card {
-  box-shadow: 0px 0px 15px $color-transparent-03;
-  background-color: $color-white;
+  box-shadow: 0px 0px 15px var(--color-transparent-03);
+  background-color: var(--color-white);
   border-radius: 10px;
 }

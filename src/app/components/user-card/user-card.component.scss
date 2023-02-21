@@ -6,8 +6,8 @@
   align-items: center;
   height: 100%;
   width: 100%;
-  color: $color-primary;
-  border-top: 1px solid $color-transparent-20;
+  color: var(--text-color);
+  border-top: 1px solid var(--color-transparent-20);
 
   img {
     flex-grow: 0;
@@ -21,6 +21,10 @@
     margin-left: 20px;
     font-size: 0.9rem;
     font-weight: 700;
+  }
+
+  .darkTheme {
+    padding-right: 8px;
   }
 
   .icon {
