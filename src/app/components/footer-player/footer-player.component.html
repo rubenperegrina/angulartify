@@ -1,7 +1,7 @@
 <ng-container *ngIf="track.id">
   <div class="flex player-container">
     <div class="flex artist-card">
-      <img [src]="track.album.imageUrl" alt="Artist image profile" srcset="" />
+      <!-- <img [src]="track.album.imageUrl" alt="Artist image profile" srcset="" />
       <div class="info-song">
         <span>
           {{ track.title }}
@@ -9,7 +9,8 @@
         <span class="artists" *ngFor="let artist of track.artists">
           {{ artist.name }}
         </span>
-      </div>
+      </div> -->
+      <iframe [src]="('https://open.spotify.com/embed/track/' + track.id.substring(14)) | domSanitizer" width="400" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     </div>
     <div class="flex control-card">
       <fa-icon class="icon" [icon]="faStepBackward" (click)="previousTrack()">

@@ -5,13 +5,14 @@ import { faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons
 import { Subscription } from 'rxjs';
 import { Track, newTrack } from '@app/interfaces/track.model';
 import { TrackService } from '../../services/track.service';
+import { DomSanitizerPipe } from '@app/pipes/dom-sanitizer.pipe';
 
 @Component({
   selector: 'app-footer-player',
   templateUrl: './footer-player.component.html',
   styleUrls: ['./footer-player.component.scss'],
   standalone: true,
-  imports: [CommonModule, FontAwesomeModule],
+  imports: [CommonModule, FontAwesomeModule, DomSanitizerPipe],
 })
 export class FooterPlayerComponent implements OnInit, OnDestroy {
 
@@ -33,6 +34,8 @@ export class FooterPlayerComponent implements OnInit, OnDestroy {
   getActualTrack() {
     const sub = this.trackService.actualTrack.subscribe(track => {
       this.track = track;
+      console.log("🚀 ~ file: footer-player.component.ts:36 ~ FooterPlayerComponent ~ sub ~ this.track:", this.track)
+      console.log("🚀 ~ file: footer-player.component.ts:36 ~ FooterPlayerComponent ~ sub ~ this.track:", this.track.id.substring(14))
     });
 
     this.subs.push(sub);
