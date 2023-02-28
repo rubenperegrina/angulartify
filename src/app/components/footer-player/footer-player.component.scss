@@ -43,6 +43,7 @@
       .artists {
         display: flex;
         flex-direction: column;
+        cursor: pointer;
       }
     }
     .control-card {
@@ -59,6 +60,15 @@
         cursor: pointer;
       }
       .icon:hover {
+        transform: scaleX(1.2) scaleY(1.2);
+      }
+      .central-icon {
+        padding: 10px;
+        font-size: 3rem;
+        flex-grow: 0;
+        cursor: pointer;
+      }
+      .central-icon:hover {
         transform: scaleX(1.2) scaleY(1.2);
       }
     }

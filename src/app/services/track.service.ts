@@ -51,4 +51,12 @@ export class TrackService {
   async nextTrack() {
     await this.spotifyApi.skipToNext();
   }
+
+  async pauseTrack() {
+    await this.spotifyApi.pause();
+  }
+
+  async playTrack() {
+    await this.spotifyApi.play();
+  }
 }

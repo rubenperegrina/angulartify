@@ -1,19 +1,25 @@
 <ng-container *ngIf="track.id">
   <div class="flex player-container">
     <div class="flex artist-card">
-      <!-- <img [src]="track.album.imageUrl" alt="Artist image profile" srcset="" />
+      <img [src]="track.album.imageUrl" alt="Artist image profile" srcset="" />
       <div class="info-song">
         <span>
           {{ track.title }}
         </span>
-        <span class="artists" *ngFor="let artist of track.artists">
+        <span [routerLink]="['/player/list/artist/', artist.id]" class="artists" *ngFor="let artist of track.artists">
           {{ artist.name }}
         </span>
-      </div> -->
-      <iframe [src]="('https://open.spotify.com/embed/track/' + track.id.substring(14)) | domSanitizer" width="400" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      </div>
+      <!-- <iframe [src]="('https://open.spotify.com/embed/track/' + track.id.substring(14)) | domSanitizer" width="400" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
     </div>
     <div class="flex control-card">
       <fa-icon class="icon" [icon]="faStepBackward" (click)="previousTrack()">
+      </fa-icon>
+      <ng-template #templateName>
+        <fa-icon class="central-icon" [icon]="faPlay" (click)="playTrack()">
+        </fa-icon>
+      </ng-template>
+      <fa-icon *ngIf="isPlaying;else templateName" class="central-icon" [icon]="faPause" (click)="pauseTrack()">
       </fa-icon>
       <fa-icon class="icon" [icon]="faStepForward" (click)="nextTrack()">
       </fa-icon>

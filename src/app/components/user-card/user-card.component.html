@@ -1,7 +1,7 @@
 <div class="flex user-card">
   <img [src]="user.imageUrl" alt="User image profile" srcset="" />
   <span>
-    {{ user.name }}
+    {{ user.name | slice:0:9 }}
   </span>
   <div class="darkTheme" (click)="toggleDarkTheme()">
     <fa-icon *ngIf="darkMode" class="icon" [icon]="faSun"> </fa-icon>
